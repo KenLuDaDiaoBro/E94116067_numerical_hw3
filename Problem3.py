@@ -22,11 +22,16 @@ def Herm (X , F , x):
  
 X = T.copy()
 F = D.copy()
-print(f"a: {Herm(X , F , 10):.6f}")
+print(f"a: {Herm(X , F , 10):.6f} ft")
 
 X = V.copy()
 F = T.copy()
-print(f"b: {Herm(X , F , 55 * 5280 / 3600):.6f}")
+S = Herm(X , F , 55 * 5280 / 3600)
+if(S < 0):
+    Re = "No"
+else:
+    Re = "Yes"
+print(f"b: {Re}, time: {S:.6f} s")
 
 x = 0
 max = 0
@@ -37,5 +42,5 @@ for i in range(1000000):
     if max < em:
         max = em
     x += 0.00001
-print(f"c: {max:.6f}")
+print(f"c: {max:.6f} ft/s")
     

@@ -1,3 +1,5 @@
+import math
+
 P_X = [0.698 , 0.733 , 0.768 , 0.803 , 0.838]
 P_Y = [0.7661 , 0.7432 , 0.7193 , 0.6946 , 0.6690]
 P_ACCX = 0.750
@@ -12,5 +14,16 @@ for order in range(1 , 5):
                 L = L * (P_ACCX - P_X[j]) / (P_X[i] - P_X[j])
         F = F + P_Y[i] * L
     F = round(F , 8)
-    Error = round(abs(F - P_ACCY) , 8)
-    print(f"Order {order}: {F} , Error: {Error:.8f}")
+    
+    EB = 1 / math.factorial(order)
+    c = (P_X[order] - P_X[0]) / 99999
+    max = 0
+    Now_Step = P_X[0]
+    for step in range(100000):
+        Tem = EB
+        for i in range(0 , order):
+            Tem *= (Now_Step - P_X[i])
+        if(Tem > max):
+            max = Tem
+        Now_Step += c
+    print(f"Order {order}: {F:.8f} , Error Bound: {max:.8f}")
