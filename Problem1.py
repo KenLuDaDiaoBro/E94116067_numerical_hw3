@@ -7,9 +7,9 @@ P_ACCY = 0.7317
 
 for order in range(1 , 5):
     F = 0
-    for i in range(0 , order):
+    for i in range(order + 1):
         L = 1
-        for j in range(0 , order):  
+        for j in range(order + 1):  
             if(i != j):
                 L = L * (P_ACCX - P_X[j]) / (P_X[i] - P_X[j])
         F = F + P_Y[i] * L
@@ -18,12 +18,14 @@ for order in range(1 , 5):
     EB = 1 / math.factorial(order)
     c = (P_X[order] - P_X[0]) / 99999
     max = 0
+    cos = 0
     Now_Step = P_X[0]
     for step in range(100000):
         Tem = EB
-        for i in range(0 , order):
+        for i in range(order + 1):
             Tem *= (Now_Step - P_X[i])
-        if(Tem > max):
-            max = Tem
+        #print(Tem)
+        if(abs(Tem) > max):
+            max = abs(Tem)
         Now_Step += c
-    print(f"Order {order}: {F:.8f} , Error Bound: {max:.8f}")
+    print(f"Order {order}: {F:.8f} , Error Bound: {max}")
