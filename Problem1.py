@@ -18,13 +18,11 @@ for order in range(1 , 5):
     EB = 1 / math.factorial(order)
     c = (P_X[order] - P_X[0]) / 99999
     max = 0
-    cos = 0
     Now_Step = P_X[0]
     for step in range(100000):
         Tem = EB
         for i in range(order + 1):
             Tem *= (Now_Step - P_X[i])
-        #print(Tem)
         if(abs(Tem) > max):
             max = abs(Tem)
         Now_Step += c

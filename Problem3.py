@@ -22,7 +22,9 @@ def Herm (X , F , x):
  
 X = T.copy()
 F = D.copy()
-print(f"a: {Herm(X , F , 10):.6f} ft")
+Y = T.copy()
+G = V.copy()
+print(f"a: {Herm(X , F , 10):.6f} ft , {Herm(Y , G , 10):.6f} ft/s")
 
 X = V.copy()
 F = T.copy()
